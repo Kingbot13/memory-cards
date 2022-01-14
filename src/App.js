@@ -11,13 +11,15 @@ function App() {
     fetch('https://rickandmortyapi.com/api/character', 
     {mode: 'cors'})
     .then(response => response.json())
-    .then(data => console.log(data));
+    .then(data => setHero(data.results))
+    .catch(error => console.error(error));
   }, [round]);
-  const fillArray = (data)=> {
-    for(let i = 0; i < 13; i++) {
-      setHero(prev => [...prev, data[i]])
-    }
-  }
+  // const fillArray = (data)=> {
+  //   for(let i = 0; i < 13; i++) {
+  //     setHero(prev => [...prev, data[i]]);
+  //     console.log('hero:', hero);
+  //   }
+  // }
   return (
     <div>
       <header>
