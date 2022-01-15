@@ -7,6 +7,7 @@ function App() {
   const [score, setScore] = React.useState(0);
   const [hero, setHero] = React.useState([]);
   const [round, setRound] = React.useState(0);
+  const [clicked, setClick] = React.useState(false);
   React.useEffect(()=> {
     fetch('https://rickandmortyapi.com/api/character', 
     {mode: 'cors'})
@@ -14,12 +15,11 @@ function App() {
     .then(data => setHero(data.results))
     .catch(error => console.error(error));
   }, [round]);
-  // const fillArray = (data)=> {
-  //   for(let i = 0; i < 13; i++) {
-  //     setHero(prev => [...prev, data[i]]);
-  //     console.log('hero:', hero);
-  //   }
-  // }
+  let shuffledArray = [];
+  const shuffle = (array) => {
+    shuffledArray = hero.filter((a, b) => 0.5 - Math.random());
+    return shuffledArray;
+  }
   return (
     <div>
       <header>
