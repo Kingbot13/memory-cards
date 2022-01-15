@@ -14,7 +14,7 @@ function Cards(props) {
     // });
 
     return(
-        <div data-id={item.id}>
+        <div data-id={item.id} onClick={props.shuffle}>
             <img src={item.image}></img>
             <p>{item.name}</p>
             {/* {characters} */}
