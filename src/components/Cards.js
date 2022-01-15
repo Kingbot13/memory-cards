@@ -14,7 +14,7 @@ function Cards(props) {
     // });
 
     return(
-        <div>
+        <div data-id={item.id}>
             <img src={item.image}></img>
             <p>{item.name}</p>
             {/* {characters} */}
