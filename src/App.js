@@ -16,10 +16,13 @@ function App() {
     .catch(error => console.error(error));
   }, [round]);
   let shuffledArray = [];
-  const shuffle = (array) => {
-    shuffledArray = hero.filter((a, b) => 0.5 - Math.random());
+  const shuffle = () => {
+    shuffledArray = hero.sort((a, b) => 0.5 - Math.random());
     return shuffledArray;
   }
+  // temporarily hardcode shuffle function for testing
+  shuffle();
+  const cards = shuffledArray.map(item => <Cards key={item.id} item={item}/>);
   return (
     <div>
       <header>
@@ -27,7 +30,8 @@ function App() {
       </header>
       <main>
         <Scoreboard score={score}/>
-        <Cards items={hero}/>
+        {cards}
+        {/* <Cards items={hero}/> */}
       </main>
       <footer>
         <p>Created by Dylan King</p>
