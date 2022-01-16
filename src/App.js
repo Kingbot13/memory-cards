@@ -8,24 +8,34 @@ function App() {
   const [hero, setHero] = React.useState([]);
   const [round, setRound] = React.useState(0);
   const [clicked, setClick] = React.useState(false);
-  let shuffledArray = [];
   React.useEffect(()=> {
     fetch('https://rickandmortyapi.com/api/character', 
     {mode: 'cors'})
     .then(response => response.json())
+    // set initial hero state
     .then(data => setHero(data.results))
     .catch(error => console.error(error));
   }, [round]);
-  const shuffle = (id) => {
+  let shuffledArray = [];
+  // randomize hero state array
+  function shuffle(id) {
+
     shuffledArray = hero.sort((a, b) => 0.5 - Math.random());
-    console.log('shuffle', shuffledArray);
-    console.log('id', id);
-    // setHero(shuffledArray);
-    return shuffledArray;
+    // console.log('shuffle', shuffledArray);
+    // console.log('id', id);
+    
+    setHero(shuffledArray);
+    // console.log('hero:', hero);
+    // return shuffledArray;
+    console.log('cards', cards);
   }
-  const newCards = () => {
-    setHero(shuffle());
-  }
+  // set hero state to randomized array
+  // const newCards = (id) => {
+  //   shuffle(id);
+  //   setHero(()=> {
+  //     shuffledArray.map(item => <Cards key={item.id} item={item} newCards={()=>newCards(item.id)}/>);
+  //   });
+  // }
   // shuffle();
 
   const cards = hero.map(item => <Cards key={item.id} item={item} shuffle={()=>shuffle(item.id)}/>);
