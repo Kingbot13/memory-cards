@@ -16,50 +16,38 @@ function App() {
     .then(data => setHero(data.results))
     .catch(error => console.error(error));
   }, [round]);
-  let shuffledArray = [];
   // randomize hero state array
   function shuffle(e) {
     if(isClicked(e)) {
       setScore(0);
       setClick([]);
     } else {
-      shuffledArray = hero.sort((a, b) => 0.5 - Math.random());
-      console.log('shuffle', shuffledArray);  
-      setHero((prev)=> [...prev, shuffledArray]);
+      setHero((item)=> item.slice().sort((a, b) => 0.5 - Math.random()));
       setScore(score + 1);
-      return shuffledArray;
-
-    }
-    
-  }
-
-  if (shuffledArray === []){
-    return shuffle(); 
-
+    }  
   }
 
   function isClicked(e) {
     let id = e.currentTarget.dataset.id;
-
     if (!clicked.includes(id)){
       setClick((prev) => [...prev, id]);
-  
       return false;
-    } else {
-      
+    } else {  
       return true;
     }
   }
 
 
   return (
-    <div>
+    <div className='main-container'>
       <header>
-        <h1>Marvel Memory Cards</h1>
+        <h1>Rick & Morty Memory Cards</h1>
       </header>
       <main>
         <Scoreboard score={score}/>
-        {hero.map(item => <Cards key={item.id} item={item} shuffle={shuffle}/>)}
+        <div className='cards-container'>
+          {hero.map(item => <Cards key={item.id} item={item} shuffle={shuffle}/>)}
+        </div>
       </main>
       <footer>
         <p>Created by Dylan King</p>
