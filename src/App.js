@@ -21,24 +21,18 @@ function App() {
   function shuffle(id) {
 
     shuffledArray = hero.sort((a, b) => 0.5 - Math.random());
-    // console.log('shuffle', shuffledArray);
-    // console.log('id', id);
-    
-    setHero(shuffledArray);
-    // console.log('hero:', hero);
-    // return shuffledArray;
-    console.log('cards', cards);
+    console.log('shuffle', shuffledArray);
+    // console.log('id', id);   
+    setHero((prev)=> [...prev, shuffledArray]);
+    setScore(score + 1);
+    return shuffledArray;
   }
-  // set hero state to randomized array
-  // const newCards = (id) => {
-  //   shuffle(id);
-  //   setHero(()=> {
-  //     shuffledArray.map(item => <Cards key={item.id} item={item} newCards={()=>newCards(item.id)}/>);
-  //   });
-  // }
-  // shuffle();
+  console.log(shuffledArray);
+  if (shuffledArray === []){
+    return shuffle(); 
 
-  const cards = hero.map(item => <Cards key={item.id} item={item} shuffle={()=>shuffle(item.id)}/>);
+  }
+
   return (
     <div>
       <header>
@@ -46,7 +40,7 @@ function App() {
       </header>
       <main>
         <Scoreboard score={score}/>
-        {cards}
+        {hero.map(item => <Cards key={item.id} item={item} shuffle={()=>shuffle(item.id)}/>)}
         {/* <Cards items={hero}/> */}
       </main>
       <footer>
