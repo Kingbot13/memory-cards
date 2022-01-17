@@ -4,17 +4,8 @@ function Cards(props) {
     // console.log('props:', props);
     const {item} = props;
 
-    // const characters = items.map((item) => {
-    //     return (
-    //         <div key={item.id}>
-    //             <img src={item.image}></img>
-    //             <p>{item.name}</p>
-    //         </div>
-    //     )
-    // });
-
     return(
-        <div data-id={item.id} onClick={props.shuffle}>
+        <div data-id={item.id} onClick={(e)=>props.shuffle(e)}>
             <img src={item.image}></img>
             <p>{item.name}</p>
             {/* {characters} */}
