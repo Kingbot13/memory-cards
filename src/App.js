@@ -19,10 +19,9 @@ function App() {
   let shuffledArray = [];
   // randomize hero state array
   function shuffle(e) {
-    console.log('event', e);
     if(isClicked(e)) {
-      // console.log(isClicked);
       setScore(0);
+      setClick([]);
     } else {
       shuffledArray = hero.sort((a, b) => 0.5 - Math.random());
       console.log('shuffle', shuffledArray);  
@@ -33,7 +32,7 @@ function App() {
     }
     
   }
-  console.log(shuffledArray);
+
   if (shuffledArray === []){
     return shuffle(); 
 
@@ -41,18 +40,17 @@ function App() {
 
   function isClicked(e) {
     let id = e.currentTarget.dataset.id;
-    console.log('target', id);
+
     if (!clicked.includes(id)){
       setClick((prev) => [...prev, id]);
-      console.log('false');
+  
       return false;
     } else {
-      console.log('true');
+      
       return true;
     }
   }
 
-  // document.addEventListener('click', isClicked);
 
   return (
     <div>
