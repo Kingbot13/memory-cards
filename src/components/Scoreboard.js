@@ -1,8 +1,9 @@
 import React from "react";
+import '../styles/Scoreboard.css';
 
 function Scoreboard(props){
     return(
-        <div>
+        <div className="score-container">
             Score: {props.score}
         </div>
     )

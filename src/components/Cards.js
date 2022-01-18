@@ -1,14 +1,14 @@
 import React from "react";
+import '../styles/Cards.css';
 
 function Cards(props) {
-    // console.log('props:', props);
     const {item} = props;
 
     return(
-        <div data-id={item.id} onClick={(e)=>props.shuffle(e)}>
+        <div className="card-container" data-id={item.id} onClick={(e)=>props.shuffle(e)}>
             <img src={item.image}></img>
             <p>{item.name}</p>
-            {/* {characters} */}
+            
         </div>
     )
 }

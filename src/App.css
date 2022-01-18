@@ -1,3 +1,14 @@
+:root{
+  --background: #00657D;
+  --header: #00A088;
+  --header-text: white;
+}
+
+header{
+  background-color: var(--header);
+  color: var(--header-text);
+}
+
 main{
   text-align: center;
   display: flex;
@@ -9,13 +20,17 @@ main{
   display: flex;
   flex-direction: column;
   text-align: center;
+  background-color: var(--background);
+  height: auto;
+
 }
 
 .cards-container{
   display: flex;
   flex-wrap: wrap;
   width: 90vw;
-  height: 95vh;
+  height: auto;
   margin: auto;
+  justify-content: space-between;
 }
 
