@@ -4,7 +4,10 @@ import Scoreboard from './components/Scoreboard';
 import Cards from './components/Cards';
 
 function App() {
-  const [score, setScore] = React.useState(0);
+  const [score, setScore] = React.useState({
+    score: 0,
+    bestScore: 0
+  });
   const [hero, setHero] = React.useState([]);
   const [round, setRound] = React.useState(0);
   const [clicked, setClick] = React.useState([]);
@@ -19,12 +22,36 @@ function App() {
   // randomize hero state array
   function shuffle(e) {
     if(isClicked(e)) {
-      setScore(0);
+      setScore((prev)=> {
+        return {
+          ...prev,
+          score: 0
+        }
+      });
       setClick([]);
     } else {
       setHero((item)=> item.slice().sort((a, b) => 0.5 - Math.random()));
-      setScore(score + 1);
+      // set score
+      setScore((prev)=> {
+        return {
+          ...prev, 
+          score: score.score + 1
+        }
+      });
+      newBest();
+
     }  
+  }
+
+  function newBest() {
+    if (score.score >= score.bestScore) {
+      setScore((prev)=> {
+        return {
+          ...prev,
+          bestScore: score.score +1,
+        }
+      });
+    }
   }
 
   function isClicked(e) {
@@ -44,7 +71,7 @@ function App() {
         <h1>Rick & Morty Memory Cards</h1>
       </header>
       <main>
-        <Scoreboard score={score}/>
+        <Scoreboard score={score.score} bestScore={score.bestScore}/>
         <div className='cards-container'>
           {hero.map(item => <Cards key={item.id} item={item} shuffle={shuffle}/>)}
         </div>

@@ -4,7 +4,8 @@ import '../styles/Scoreboard.css';
 function Scoreboard(props){
     return(
         <div className="score-container">
-            Score: {props.score}
+            <p>Score: {props.score}</p>
+            <p>Best Score: {props.bestScore}</p>
         </div>
     )
 }
